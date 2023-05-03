@@ -34,7 +34,7 @@ public class UsersServiceImplementation implements UsersService {
         System.out.println("user saved to db with userId : " + usersDetail.getId());
     }
 
-    @Override
+    /*@Override
     public void updateUser(Users users, Long userId) {
         Optional<Users> userDetailOpt = usersRepository.findById(userId);
         if(userDetailOpt.isPresent()){
@@ -48,14 +48,12 @@ public class UsersServiceImplementation implements UsersService {
             if(users.getEmail() != null || users.getEmail().isEmpty())
                 usersDetail.setEmail(users.getEmail());
             if(users.getUsername() != null || users.getUsername().isEmpty())
-                usersDetail.setUsername(users.getUsername());
-            if(users.getRole() != null || users.getRole().isEmpty())
-                usersDetail.setRole(users.getRole());
+                usersDetail.setNickname(users.getNickname());
             usersRepository.save(usersDetail);
         }else{
             throw new RuntimeException("user not found.");
         }
-    }
+    }*/
 
     @Override
     public void deleteUserById(Long userId) {

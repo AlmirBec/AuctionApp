@@ -34,8 +34,8 @@ public class Users implements UserDetails {
     @Column
     private String nickname;
 
-    @Column
-    private String role;
+    /*@Column
+    private String role;*/
 
     @Column(name = "datejoined")
     private Date datejoined;

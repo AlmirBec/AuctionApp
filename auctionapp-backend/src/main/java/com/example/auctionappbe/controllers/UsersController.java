@@ -40,11 +40,11 @@ public class UsersController {
         return ResponseEntity.ok(authenticationService.login(request));
     }
 
-    @PutMapping("/user/{userId}")
+    /*@PutMapping("/user/{userId}")
     public String updateUser(@RequestBody Users users, @PathVariable Long userId){
         usersService.updateUser(users, userId);
         return "user updated successfully.";
-    }
+    }*/
 
     @DeleteMapping("/user/{userId}")
     public String deleteUserById(@PathVariable Long userId){

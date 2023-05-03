@@ -19,17 +19,17 @@ import java.util.Date;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class AuthenticationService {
-    @Autowired
-    private UsersRepository usersRepository;
-    @Autowired
-    private PasswordEncoder passwordEncoder;
-    @Autowired
-    private JwtService jwtService;
-    @Autowired
-    private AuthenticationManager authenticationManager;
-    @Autowired
-    private AuthenticationResponse authenticationResponse;
+
+    private final UsersRepository usersRepository;
+
+    private final PasswordEncoder passwordEncoder;
+
+    private final JwtService jwtService;
+
+    private final AuthenticationManager authenticationManager;
+
     public AuthenticationResponse register(RegisterRequest request) {
         var user = Users.builder()
                 .firstname(request.getFirstname())
@@ -52,7 +52,7 @@ public class AuthenticationService {
         );
         var user = usersRepository.findByEmail(request.getEmail())
                 .orElseThrow();
-        
+
         var jwtToken = jwtService.generateToken(user);
         return AuthenticationResponse.builder()
                 .token(jwtToken)

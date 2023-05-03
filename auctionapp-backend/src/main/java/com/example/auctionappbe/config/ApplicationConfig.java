@@ -1,6 +1,7 @@
 package com.example.auctionappbe.config;
 
 import com.example.auctionappbe.repository.UsersRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,13 +16,11 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
+@RequiredArgsConstructor
 public class ApplicationConfig {
-    @Autowired
+
     private final UsersRepository usersRepository;
 
-    public ApplicationConfig(UsersRepository usersRepository) {
-        this.usersRepository = usersRepository;
-    }
 
     @Bean
     public UserDetailsService userDetailsService(){
