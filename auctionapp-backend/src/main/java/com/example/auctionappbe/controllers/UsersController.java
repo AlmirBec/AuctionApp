@@ -18,6 +18,16 @@ public class UsersController {
     @Autowired
     private UsersService usersService;
 
+    @PostMapping("/auth/register")
+    public ResponseEntity<AuthenticationResponse> register(@RequestBody RegisterRequest request){
+        return ResponseEntity.ok(authenticationService.register(request));
+    }
+    @PostMapping("/auth/login")
+    public ResponseEntity<AuthenticationResponse> login(@RequestBody LoginRequest request){
+        return ResponseEntity.ok(authenticationService.login(request));
+    }
+
+
     @GetMapping("/users")
     public List<Users> getAllUser(){
         List<Users> users = usersService.getAllUser();
@@ -31,14 +41,7 @@ public class UsersController {
         return users;
     }
 
-    @PostMapping("/auth/register")
-    public ResponseEntity<AuthenticationResponse> register(@RequestBody RegisterRequest request){
-        return ResponseEntity.ok(authenticationService.register(request));
-    }
-    @PostMapping("/auth/login")
-    public ResponseEntity<AuthenticationResponse> login(@RequestBody LoginRequest request){
-        return ResponseEntity.ok(authenticationService.login(request));
-    }
+
 
     /*@PutMapping("/user/{userId}")
     public String updateUser(@RequestBody Users users, @PathVariable Long userId){

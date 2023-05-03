@@ -13,7 +13,6 @@ export default function Registration() {
     password: "",
     username: "",
     role: "",
-    datejoined: "2023-10-10"
   });
 
   const { firstname, lastname, email, password} = user;
@@ -25,7 +24,7 @@ export default function Registration() {
   const onSubmit = async (e) => {
     e.preventDefault();
     console.log(user);
-    await axios.post("http://localhost:8080/user", user);
+    await axios.post("http://localhost:8080/auth/register", user);
     //navigate("/");
   };
   return (
