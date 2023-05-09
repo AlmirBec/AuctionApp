@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class ItemController {
-    @GetMapping("/")
+    @GetMapping("/items")
     public ResponseEntity<String> sayHello(){
         return ResponseEntity.ok("List of items");
     }

@@ -1,0 +1,108 @@
+.footer{
+    display: flex;
+    flex-direction: row;
+    background: #252525;
+    align-items: center;
+
+    position: absolute;
+    width: 100%;
+    height: 200px;
+    left: 0px;
+    bottom: 0px;
+}
+
+.frame33{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 5px;
+    width: 200px;
+
+    position: absolute;
+    left: 11.18%;
+    right: 78.26%;
+    top: 8.71%;
+    bottom: 50.84%;
+}
+
+.frame34{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0;
+    gap: 2px;
+    width: 200px;
+    position: absolute;    
+    right: 11.18%;
+    left: 78.26%;
+    top: 8.71%;
+    bottom: 50.84%;
+}
+.frame33 a{
+    text-decoration: none;
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    /* identical to box height, or 150% */
+
+
+    /* Neutral/Neutral 09 */
+
+    color: #D8D8D8;
+}
+
+.frame33 h4{
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    /* identical to box height, or 150% */
+
+
+    /* Neutral/White */
+
+    color: #FFFFFF;
+
+    opacity: 0.5;
+}
+.frame34 h4{
+    /* Body/Regular */
+
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    /* identical to box height, or 150% */
+
+
+    /* Neutral/White */
+
+    color: #FFFFFF;
+
+    opacity: 0.5;
+}
+.icons{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0px;
+    gap: 16px;
+}
+
+.frame34 p{
+    /* Body/Regular */
+
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 10px;
+    /* identical to box height, or 150% */
+    /* Neutral/Neutral 09 */
+    color: #D8D8D8;
+}

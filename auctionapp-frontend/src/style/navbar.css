@@ -1,0 +1,68 @@
+.navbar{
+    box-sizing: border-box;
+
+    position: absolute;
+    left: 0%;
+    right: 0%;
+    top: 0%;
+    bottom: 0%;
+    height: 30px;
+    /* Neutral/Neutral 00 */
+
+    background: #252525;
+}
+
+.icons{
+    /* Auto layout */
+
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 16px;
+
+position: absolute;
+left: 12.43%;
+right: 80.21%;
+top: 20%;
+bottom: 17.5%;
+}
+.links{
+
+display: flex;
+flex-direction: row;
+align-items: flex-start;
+padding: 0px;
+
+position: absolute;
+left: 70.41%;
+right: 11.15%;
+top: 21.25%;
+bottom: 18.75%;
+}
+.links a{
+    width: 150px;
+height: 24px;
+
+/* Body Small/SemiBold */
+
+font-family: 'Lato';
+font-style: normal;
+font-weight: 600;
+font-size: 14px;
+line-height: 24px;
+/* identical to box height, or 171% */
+
+
+/* Neutral/White */
+
+color: #FFFFFF;
+
+
+/* Inside auto layout */
+
+flex: none;
+order: 0;
+flex-grow: 0;
+}
+

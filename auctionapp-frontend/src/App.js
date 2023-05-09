@@ -1,10 +1,20 @@
 import logo from './logo.svg';
 import './App.css';
-import Registration from './components/Registration';
+
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Loginpage from './pages/Loginpage';
+import Registerpage from './pages/Registerpage';
+import { Itempage } from './pages/Itempage';
 function App() {
   return (
     <div className="App">
-      <Registration/>
+      <Router>
+        <Routes>
+          <Route exact path = "/" element={<Itempage/>}/>
+          <Route path = "/login" element={<Loginpage/>}/>
+          <Route path = "/registration" element={<Registerpage/>}/>
+        </Routes>
+      </Router>
     </div>
   );
 }

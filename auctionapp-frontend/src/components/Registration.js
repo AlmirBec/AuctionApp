@@ -2,9 +2,11 @@
 import React, { useState }from 'react'
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
+import Inputfield from './Inputfield';
+import '../style/registration.css'
 
 export default function Registration() {
-    //let navigate = useNavigate();
+  let navigate = useNavigate();
 
   const [user, setUser] = useState({
     firstname: "",
@@ -25,73 +27,52 @@ export default function Registration() {
     e.preventDefault();
     console.log(user);
     await axios.post("http://localhost:8080/auth/register", user);
-    //navigate("/");
+    navigate("/");
   };
-  return (
-    <div>
-      <div>
-        <div>
-          <h2>Register User</h2>
+  return ( 
+      <div className='registerBox'>
+        <div className='registerForm'>
+          <h2>Register</h2>
+          <div className= 'frame179'>
           <form onSubmit={(e) => onSubmit(e)}>
             <div>
-              <label htmlFor="firstname">
-                First Name:
-              </label>
-              <br></br>
-              <input
-                type={"text"}
-                placeholder="John"
-                name="firstname"
-                value={firstname}
-                onChange={(e) => onInputChange(e)}
-              />
+              <Inputfield label = "First name:"
+                          type= "text" 
+                          placeholder= "John"
+                          name = "firstname"
+                          value={firstname}
+                          onChange={(e) => onInputChange(e)}/>
             </div>
             <div>
-              <label htmlFor="LastName">
-                Last Name:
-              </label>
-              <br></br>
-              <input
-                type={"text"}
-                placeholder="Doe"
-                name="lastname"
-                value={lastname}
-                onChange={(e) => onInputChange(e)}
-              />
+              <Inputfield label = "Last name:"
+                          type= "text" 
+                          placeholder= "Doe"
+                          name = "lastname"
+                          value={lastname}
+                          onChange={(e) => onInputChange(e)}/>
             </div>
             <div>
-              <label htmlFor="Email" >
-                E-mail
-              </label>
-              <br></br>
-              <input
-                type={"email"}
-               
-                placeholder="user@domain.com"
-                name="email"
-                value={email}
-                onChange={(e) => onInputChange(e)}
-              />
+              <Inputfield label = "Email:"
+                          type= "email" 
+                          placeholder= "example@domain.com"
+                          name = "email"
+                          value={email}
+                          onChange={(e) => onInputChange(e)}/>
             </div>
             <div>
-              <label htmlFor="Password" >
-                Password:
-              </label>
-              <br></br>
-              <input
-                type={"password"}
-                placeholder="********"
-                name="password"
-                value={password}
-                onChange={(e) => onInputChange(e)}
-              />
+              <Inputfield label = "Password:"
+                          type= "password" 
+                          placeholder= "********"
+                          name = "password"
+                          value={password}
+                          onChange={(e) => onInputChange(e)}/>
             </div>
             <button type="submit">
-              Submit
+              Register
             </button>
           </form>
+          </div>
         </div>
       </div>
-    </div>
   )
 }
