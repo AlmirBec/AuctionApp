@@ -23,6 +23,6 @@ public class Photo {
     @Column
     private String url;
 
-    @OneToMany(mappedBy = "photo", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "photo", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<AuctionItem> auctionitem = new HashSet<>();
 }

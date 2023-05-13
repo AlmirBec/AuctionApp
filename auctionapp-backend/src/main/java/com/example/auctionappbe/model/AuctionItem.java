@@ -37,19 +37,19 @@ public class AuctionItem {
     @Column
     private Date end_date;
 
-    @OneToMany(mappedBy = "auctionitem", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "auctionitem", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Bid> bid = new HashSet<>();
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "seller_id")
     private Users users;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "category_id")
     private Category category;
 
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "photo_id")
     private Photo photo;
 

@@ -40,10 +40,10 @@ public class Users implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Role Role;
 
-    @OneToMany(mappedBy = "users", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "users", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Bid> bid = new HashSet<>();
 
-    @OneToMany(mappedBy = "users", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "users", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<AuctionItem> auctionitem = new HashSet<>();
 
 

@@ -23,6 +23,6 @@ public class Category {
     @Column
     private String name;
 
-    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "category", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<AuctionItem> auctionitem = new HashSet<>();
 }
