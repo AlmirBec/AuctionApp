@@ -6,9 +6,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.Collection;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Data
 @Builder
@@ -34,14 +32,19 @@ public class Users implements UserDetails {
     @Column
     private String nickname;
 
-    /*@Column
-    private String role;*/
+
 
     @Column(name = "datejoined")
     private Date datejoined;
 
     @Enumerated(EnumType.STRING)
     private Role Role;
+
+    @OneToMany(mappedBy = "users", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Bid> bid = new HashSet<>();
+
+    @OneToMany(mappedBy = "users", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<AuctionItem> auctionitem = new HashSet<>();
 
 
     @Override
