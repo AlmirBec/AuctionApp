@@ -1,26 +1,64 @@
 import React from 'react'
-import '../style/footer.css'
 import { FaTwitter, FaFacebook, FaInstagram } from 'react-icons/fa';
+import { Grid, Link, Typography } from '@mui/material';
 const Footer = () => {
   return (
-    <div className='footer'>
-        <div className='frame33'>
-            <h4>AUCTION</h4>
-            <a href="#">About us</a>
-            <a href="#">Terms and Conditions</a>
-            <a href="#">Privacy and Policy</a>
-        </div>
-        <div className='frame34'>
-            <h4>GET IN TOUCH</h4>
-            <p>Call us at: +123 797-567-2535</p>
-            <p>support@auction.com</p>
-            <div className='icons'>
-                <FaFacebook style={{background: '#9B9B9B'}}/>
-                <FaInstagram style={{background: '#9B9B9B'}}/>
-                <FaTwitter style={{background: '#9B9B9B'}}/>
-            </div>
-        </div>
-    </div>
+    <Grid container sx={{ bgcolor: '#252525'}} justifyContent={'space-around'} alignItems={'center'}>
+      <Grid item xs={12} sm={6}>
+        <Grid container spacing={1} direction="column" marginLeft={10} p={2.5}>
+          <Grid item>
+            <Typography variant="h6" sx={{color: "#FFFFFF", fontFamily: 'Lato', fontSize:"16px"}}>AUCTION</Typography>
+          </Grid>
+          <Grid item>
+          <Link href="#" underline="none">
+            <Typography variant="body1" style={{ fontFamily: 'Lato', color: '#D8D8D8' }}>
+              About us
+            </Typography>
+          </Link>
+          </Grid>
+          <Grid item>
+          <Link href="#" underline="none">
+            <Typography variant="body1" style={{ fontFamily: 'Lato', color: '#D8D8D8' }}>
+              Terms and conditions
+            </Typography>
+          </Link>
+          </Grid>
+          <Grid item>
+          <Link href="#" underline="none">
+            <Typography variant="body1" style={{ fontFamily: 'Lato', color: '#D8D8D8' }}>
+              Privacy and Policy
+            </Typography>
+          </Link>
+          </Grid>
+        </Grid>
+      </Grid>
+      <Grid item xs={12} sm={6}>
+        <Grid container spacing={1} direction="column" p={2.5}>
+          <Grid item>
+            <Typography variant="h6" sx={{color: "#FFFFFF", fontFamily: 'Lato', fontSize:"16px"}}>GET IN TOUCH</Typography>
+          </Grid>
+          <Grid item>
+            <Typography style={{ fontFamily: 'Lato', color: '#D8D8D8' }}>Call us at: +123 797-567-2535</Typography>
+          </Grid>
+          <Grid item>
+            <Typography style={{ fontFamily: 'Lato', color: '#D8D8D8' }}>support@auction.com</Typography>
+          </Grid>
+          <Grid item>
+            <Grid container  spacing={2}>
+              <Grid item sx={{borderRadius: "50%" }}>
+                <FaFacebook color='#9B9B9B' />
+              </Grid>
+              <Grid item sx={{ borderRadius: "50%" }}>
+                <FaInstagram color='#9B9B9B'/>
+              </Grid>
+              <Grid item sx={{borderRadius: "50%" }}>
+                <FaTwitter color='#9B9B9B'/>
+              </Grid>
+            </Grid>
+          </Grid>
+        </Grid>
+      </Grid>
+    </Grid>
   )
 }
 

@@ -2,7 +2,7 @@
 
     box-sizing: border-box;
 
-    /* Auto layout */
+
 
     display: flex;
     flex-direction: column;
@@ -11,14 +11,14 @@
 
     position: absolute;
     width: 500px;
-    height: 300px;
+    height: 350px;
     left: 400px;
     top: 100px;
 
-    /* Neutral/White */
+
 
     background: #FFFFFF;
-    /* Neutral/Neutral 09 */
+ 
 
     border: 1px solid #D8D8D8;
 
@@ -55,17 +55,14 @@
 }
 
 .frame179 label{
-    /* Body/Semibold */
+   
 
 font-family: 'Lato';
 font-style: normal;
 font-weight: 600;
 font-size: 12px;
 line-height: 24px;
-/* identical to box height, or 150% */
 
-
-/* Neutral/Neutral 00 */
 
 color: #252525;
 

@@ -46,11 +46,7 @@
     font-weight: 400;
     font-size: 16px;
     line-height: 24px;
-    /* identical to box height, or 150% */
-
-
-    /* Neutral/Neutral 09 */
-
+    
     color: #D8D8D8;
 }
 
@@ -60,27 +56,20 @@
     font-weight: 400;
     font-size: 16px;
     line-height: 24px;
-    /* identical to box height, or 150% */
-
-
-    /* Neutral/White */
-
+    
     color: #FFFFFF;
 
     opacity: 0.5;
 }
 .frame34 h4{
-    /* Body/Regular */
+
 
     font-family: 'Lato';
     font-style: normal;
     font-weight: 400;
     font-size: 16px;
     line-height: 24px;
-    /* identical to box height, or 150% */
-
-
-    /* Neutral/White */
+   
 
     color: #FFFFFF;
 
@@ -95,14 +84,13 @@
 }
 
 .frame34 p{
-    /* Body/Regular */
+
 
     font-family: 'Lato';
     font-style: normal;
     font-weight: 400;
     font-size: 16px;
     line-height: 10px;
-    /* identical to box height, or 150% */
-    /* Neutral/Neutral 09 */
+   
     color: #D8D8D8;
 }

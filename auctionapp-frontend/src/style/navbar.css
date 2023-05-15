@@ -7,13 +7,13 @@
     top: 0%;
     bottom: 0%;
     height: 30px;
-    /* Neutral/Neutral 00 */
+
 
     background: #252525;
 }
 
 .icons{
-    /* Auto layout */
+    
 
 display: flex;
 flex-direction: row;
@@ -44,22 +44,22 @@ bottom: 18.75%;
     width: 150px;
 height: 24px;
 
-/* Body Small/SemiBold */
+
 
 font-family: 'Lato';
 font-style: normal;
 font-weight: 600;
 font-size: 14px;
 line-height: 24px;
-/* identical to box height, or 171% */
 
 
-/* Neutral/White */
+
+
 
 color: #FFFFFF;
 
 
-/* Inside auto layout */
+
 
 flex: none;
 order: 0;
