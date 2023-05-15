@@ -18,5 +18,6 @@ public class AuctionItemController {
     @GetMapping("/items")
     public List<AuctionItem> getAllItems(){
         return auctionItemRepository.findAll();
+
     }
 }
