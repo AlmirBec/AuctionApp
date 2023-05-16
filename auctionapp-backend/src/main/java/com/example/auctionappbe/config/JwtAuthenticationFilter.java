@@ -17,17 +17,13 @@ import org.springframework.security.web.authentication.WebAuthenticationDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
-
 import java.io.IOException;
+
 @Component
 @RequiredArgsConstructor
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
-
     private final JwtService jwtService;
-
     private final UserDetailsService userDetailsService;
-
-
     @Override
     protected void doFilterInternal(
             @NonNull HttpServletRequest request,
@@ -37,15 +33,19 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         final String authHeader = request.getHeader("Authorization");
         final String jwt;
         final String userEmail;
+
         //If there is no authorization header we dont continue process
         if(authHeader == null || !authHeader.startsWith("Bearer ")){
             filterChain.doFilter(request, response);
             return;
         }
+
         jwt = authHeader.substring(7);
         userEmail = jwtService.extractUseremail(jwt);
+
         if(userEmail != null && SecurityContextHolder.getContext().getAuthentication() == null){
             UserDetails userDetails = this.userDetailsService.loadUserByUsername(userEmail);
+
             if(jwtService.isTokenValid(jwt, userDetails)){
                 UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
                         userDetails, null, userDetails.getAuthorities()
@@ -54,7 +54,9 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                         .buildDetails(request));
                 SecurityContextHolder.getContext().setAuthentication(authToken);
             }
+
         }
+
         filterChain.doFilter(request, response);
     }
 }

@@ -3,13 +3,13 @@ import Header from '../components/Header'
 import Topbar from '../components/Topbar'
 import Footer from '../components/Footer'
 import Login from '../components/Login'
+import Wrapper from '../components/Wrapper'
 const Loginpage = () => {
   return (
     <>
-    <Topbar/>
-    <Header/>
-    <Login/>
-    <Footer/>
+    <Wrapper>
+      <Login/>
+    </Wrapper>
     </>
   )
 }

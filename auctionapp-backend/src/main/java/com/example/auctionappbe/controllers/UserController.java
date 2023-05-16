@@ -1,8 +1,8 @@
 package com.example.auctionappbe.controllers;
 
-import com.example.auctionappbe.model.Users;
+import com.example.auctionappbe.models.User;
 import com.example.auctionappbe.service.AuthenticationService;
-import com.example.auctionappbe.service.UsersService;
+import com.example.auctionappbe.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,12 +11,12 @@ import java.util.List;
 
 @RestController
 @CrossOrigin("http://localhost:3000")
-public class UsersController {
+public class UserController {
 
     @Autowired
     private AuthenticationService authenticationService;
     @Autowired
-    private UsersService usersService;
+    private UserService userService;
 
     @PostMapping("/auth/register")
     public ResponseEntity<AuthenticationResponse> register(@RequestBody RegisterRequest request){
@@ -28,30 +28,30 @@ public class UsersController {
     }
 
 
-    @GetMapping("/users")
-    public List<Users> getAllUser(){
-        List<Users> users = usersService.getAllUser();
-        System.out.println("users : "+users);
+    @GetMapping("/user")
+    public List<User> getAllUser(){
+        List<User> users = userService.getAllUser();
+        System.out.println("user : "+users);
         return users;
     }
     @GetMapping("/user/{userId}")
-    public Users getUserById(@PathVariable Long userId){
-        Users users = usersService.getUserById(userId);
-        System.out.println("userId : "+userId+" : user : "+ users);
-        return users;
+    public User getUserById(@PathVariable Long userId){
+        User user = userService.getUserById(userId);
+        System.out.println("userId : "+userId+" : user : "+ user);
+        return user;
     }
 
 
 
     /*@PutMapping("/user/{userId}")
-    public String updateUser(@RequestBody Users users, @PathVariable Long userId){
-        usersService.updateUser(users, userId);
+    public String updateUser(@RequestBody User user, @PathVariable Long userId){
+        userService.updateUser(user, userId);
         return "user updated successfully.";
     }*/
 
     @DeleteMapping("/user/{userId}")
     public String deleteUserById(@PathVariable Long userId){
-        usersService.deleteUserById(userId);
+        userService.deleteUserById(userId);
         return "user deleted successfully.";
     }
 }

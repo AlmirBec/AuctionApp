@@ -1,4 +1,4 @@
-package com.example.auctionappbe.model;
+package com.example.auctionappbe.models;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -7,8 +7,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 
 @Data
 @Builder
@@ -29,7 +27,7 @@ public class Bid {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "buyer_id")
-    private Users users;
+    private User user;
 
 
 

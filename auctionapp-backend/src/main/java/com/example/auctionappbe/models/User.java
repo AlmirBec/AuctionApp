@@ -1,4 +1,4 @@
-package com.example.auctionappbe.model;
+package com.example.auctionappbe.models;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -13,8 +13,8 @@ import java.util.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "users", schema = "public")
-public class Users implements UserDetails {
+@Table(name = "user", schema = "public")
+public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -24,15 +24,13 @@ public class Users implements UserDetails {
     @Column
     private String lastname;
 
-    @Column
+    @Column(unique = true)
     private String email;
     @Column
     private String password;
 
     @Column
-    private String nickname;
-
-
+    private String username;
 
     @Column(name = "datejoined")
     private Date datejoined;
@@ -40,12 +38,11 @@ public class Users implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Role Role;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "users", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Bid> bid = new HashSet<>();
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "users", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<AuctionItem> auctionitem = new HashSet<>();
-
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

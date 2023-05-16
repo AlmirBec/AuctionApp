@@ -2,7 +2,7 @@ import { Divider, List, ListItem, ListItemButton, ListItemText, ListSubheader } 
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 
-const Categories = () => {
+const Categories = ({onItemsChange}) => {
     const style = {
         width: '100%',
         maxWidth: 360,
@@ -11,34 +11,36 @@ const Categories = () => {
         flexDirection: 'column',
       };
 
-      /*const token = localStorage.getItem('access_token');
-      if(!token){
-        window.location.href = "/login";
-      }
-      else{
-        console.log(token);
-      }*/
-
       const [categories, setCategories] = useState([]);
 
       useEffect(() => {
         axios.get("http://localhost:8080/items/categories")
         .then(response => {
             setCategories(response.data);
-            console.log(response.data);
         })
         .catch(error => {
             console.log(error);
         });
     }, []);
+
+    const handleClick = (id) => {
+        axios.get(`http://localhost:8080/items/category/${id}`)
+    .then(response => {
+        onItemsChange(response.data);
+    })
+    .catch(error => {
+        console.log(error);
+    });
+       
+      };
   return (
     <List sx={style} component="nav" aria-label="mailbox folders" 
     subheader={<ListSubheader>Categories</ListSubheader>}>
         {categories.map((data) => (
         <div key={data.id}>
-        <ListItem>
+        <ListItemButton onClick={() => handleClick(data.id)}>
             <ListItemText primary={data.name} />
-        </ListItem>
+        </ListItemButton>
         <Divider/>
         </div>
   ))}

@@ -1,8 +1,7 @@
 package com.example.auctionappbe.config;
 
-import com.example.auctionappbe.repository.UsersRepository;
+import com.example.auctionappbe.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -19,7 +18,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @RequiredArgsConstructor
 public class ApplicationConfig {
 
-    private final UsersRepository usersRepository;
+    private final UserRepository userRepository;
 
 
     @Bean
@@ -27,7 +26,7 @@ public class ApplicationConfig {
         return new UserDetailsService() {
             @Override
             public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-                return usersRepository.findByEmail(username)
+                return userRepository.findByEmail(username)
                         .orElseThrow(() -> new UsernameNotFoundException("User not found"));
             }
         };

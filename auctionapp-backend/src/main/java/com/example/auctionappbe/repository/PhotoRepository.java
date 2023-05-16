@@ -1,6 +1,6 @@
 package com.example.auctionappbe.repository;
 
-import com.example.auctionappbe.model.Photo;
+import com.example.auctionappbe.models.Photo;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

@@ -1,14 +1,14 @@
 package com.example.auctionappbe.service;
 
-import com.example.auctionappbe.model.Users;
-import com.example.auctionappbe.repository.UsersRepository;
+import com.example.auctionappbe.models.User;
+import com.example.auctionappbe.repository.UserRepository;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.User;
+import org.springframework.core.env.Environment;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
@@ -19,11 +19,22 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.function.Function;
 
+
 @Service
 public class JwtService {
+
+    private final UserRepository userRepository;
+    private final Environment environment;
+
+    private final String SECRET_KEY;
+
     @Autowired
-    private UsersRepository usersRepository;
-    private static final String SECRET_KEY = "5368566D5971337436763979244226452948404D635166546A576E5A72347537";
+    public JwtService(UserRepository userRepository, Environment environment) {
+        this.userRepository = userRepository;
+        this.environment = environment;
+        this.SECRET_KEY = environment.getProperty("secret_key");
+    }
+
     public String extractUseremail(String token) {
         return extractClaim(token, Claims::getSubject);
     }
@@ -47,7 +58,7 @@ public class JwtService {
     //generate token with extra claims
     public String generateToken(Map<String, Object> extraClaims,
                                 UserDetails userDetails){
-        Optional<Users> user = usersRepository.findByEmail(userDetails.getUsername());
+        Optional<User> user = userRepository.findByEmail(userDetails.getUsername());
         if(user != null){
             extraClaims.put("id", user.get().getId());
             extraClaims.put("firstname", user.get().getFirstname());

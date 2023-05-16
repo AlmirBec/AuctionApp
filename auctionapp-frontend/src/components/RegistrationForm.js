@@ -9,10 +9,10 @@ export default function Registration() {
   let navigate = useNavigate();
 
   const [user, setUser] = useState({
-    firstname: "John",
-    lastname: "Doe",
-    email: "example@gmail.com",
-    password: "12345678",
+    firstname: "",
+    lastname: "",
+    email: "",
+    password: "",
     username: "",
     role: "",
   });
@@ -27,7 +27,7 @@ export default function Registration() {
     e.preventDefault();
     console.log(user);
     await axios.post("http://localhost:8080/auth/register", user);
-    navigate("/");
+    navigate("/login");
   };
   return ( 
     <Grid container justifyContent="center" alignItems="center" sx={{ width: "40%", margin:"50px auto",

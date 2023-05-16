@@ -1,8 +1,6 @@
 package com.example.auctionappbe.controllers;
 
-import com.example.auctionappbe.model.AuctionItem;
-import com.example.auctionappbe.model.Category;
-import com.example.auctionappbe.repository.AuctionItemRepository;
+import com.example.auctionappbe.models.Category;
 import com.example.auctionappbe.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;

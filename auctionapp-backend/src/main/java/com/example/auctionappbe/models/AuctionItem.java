@@ -1,4 +1,4 @@
-package com.example.auctionappbe.model;
+package com.example.auctionappbe.models;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -32,25 +32,25 @@ public class AuctionItem {
     private Long price;
 
     @Column
-    private Date start_date;
+    private Date startDate;
 
     @Column
-    private Date end_date;
+    private Date endDate;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "auctionitem", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Bid> bid = new HashSet<>();
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "seller_id")
-    private Users users;
+    @JoinColumn(name = "sellerId")
+    private User user;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "category_id")
+    @JoinColumn(name = "categoryId")
     private Category category;
 
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "photo_id")
+    @JoinColumn(name = "photoId")
     private Photo photo;
 
 }
