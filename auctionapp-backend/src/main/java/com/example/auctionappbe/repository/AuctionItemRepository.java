@@ -10,7 +10,9 @@ public interface AuctionItemRepository extends JpaRepository<AuctionItem, Long> 
     List<AuctionItem> findAllByOrderByStartDate();
     List<AuctionItem> findAllByOrderByPrice();
     List<AuctionItem> findAllByOrderByIdDesc();
-
     List<AuctionItem> findAllByCategoryId(Long categoryId);
-
+    List<AuctionItem> findAllByCategoryIdOrderByStartDate(Long id);
+    List<AuctionItem> findAllByCategoryIdOrderByName(Long id);
+    List<AuctionItem> findAllByCategoryIdOrderByPrice(Long id);
+    List<AuctionItem> findAllByCategoryIdOrderByIdDesc(Long id);
 }

@@ -1,7 +1,6 @@
 import React, { useState }from 'react'
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
-import Inputfield from './Inputfield';
 import '../style/registration.css'
 import { FormControl, Input, InputLabel, Button, Grid } from '@mui/material';
 const Login = () => {

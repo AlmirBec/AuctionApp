@@ -24,14 +24,24 @@ const Categories = ({onItemsChange}) => {
     }, []);
 
     const handleClick = (id) => {
+        if(id === 0){
+            axios.get("http://localhost:8080/items")
+            .then(response => {
+                onItemsChange(response.data);
+            })
+            .catch(error => {
+                console.log(error);
+            });
+        }
+        else{
         axios.get(`http://localhost:8080/items/category/${id}`)
-    .then(response => {
-        onItemsChange(response.data);
-    })
-    .catch(error => {
-        console.log(error);
-    });
-       
+            .then(response => {
+                onItemsChange(response.data);
+            })
+            .catch(error => {
+                console.log(error);
+            });
+        }
       };
   return (
     <List sx={style} component="nav" aria-label="mailbox folders" 
@@ -44,9 +54,11 @@ const Categories = ({onItemsChange}) => {
         <Divider/>
         </div>
   ))}
-  <ListItem>
-        <ListItemText primary="All categories"/>
-    </ListItem>
+  <div key={0}>
+    <ListItemButton onClick={() => handleClick(0)}>
+            <ListItemText primary="All categories"/>
+        </ListItemButton>
+    </div>
 </List>
   )
 }

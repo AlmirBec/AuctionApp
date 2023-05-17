@@ -40,4 +40,20 @@ public class AuctionItemController {
     public List<AuctionItem> getItemsByCategory(@PathVariable Long categoryId) {
         return auctionItemRepository.findAllByCategoryId(categoryId);
     }
+    @GetMapping("/items/sortInCategoryByName/{categoryId}")
+    public List<AuctionItem> getItemsFromCategorySortedByName(@PathVariable Long categoryId) {
+        return auctionItemRepository.findAllByCategoryIdOrderByName(categoryId);
+    }
+    @GetMapping("/items/sortInCategoryByPrice/{categoryId}")
+    public List<AuctionItem> getItemsFromCategorySortedByPrice(@PathVariable Long categoryId) {
+        return auctionItemRepository.findAllByCategoryIdOrderByPrice(categoryId);
+    }
+    @GetMapping("/items/sortInCategoryByStartDate/{categoryId}")
+    public List<AuctionItem> getItemsFromCategorySortedByStartDate(@PathVariable Long categoryId) {
+        return auctionItemRepository.findAllByCategoryIdOrderByStartDate(categoryId);
+    }
+    @GetMapping("/items/sortInCategoryByNewness/{categoryId}")
+    public List<AuctionItem> getItemsFromCategorySortedByIdDesc(@PathVariable Long categoryId) {
+        return auctionItemRepository.findAllByCategoryIdOrderByIdDesc(categoryId);
+    }
 }
