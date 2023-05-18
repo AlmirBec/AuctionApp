@@ -1,6 +1,7 @@
 import React from 'react'
 import { FaTwitter, FaFacebook, FaInstagram } from 'react-icons/fa';
 import { Grid, Link, Typography } from '@mui/material';
+
 const Footer = () => {
   return (
     <Grid container sx={{ bgcolor: '#252525'}} justifyContent={'space-around'} alignItems={'center'}>

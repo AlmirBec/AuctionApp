@@ -1,8 +1,8 @@
 package com.example.auctionappbe.service;
 
-import com.example.auctionappbe.controllers.AuthenticationResponse;
-import com.example.auctionappbe.controllers.LoginRequest;
-import com.example.auctionappbe.controllers.RegisterRequest;
+import com.example.auctionappbe.models.authentication.AuthenticationResponse;
+import com.example.auctionappbe.models.authentication.LoginRequest;
+import com.example.auctionappbe.models.authentication.RegisterRequest;
 import com.example.auctionappbe.models.Role;
 import com.example.auctionappbe.models.User;
 import com.example.auctionappbe.repository.UserRepository;
@@ -20,11 +20,11 @@ public class AuthenticationService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
-    private final JwtService jwtService;
+    private final JwtUtil jwtUtil;
     private final AuthenticationManager authenticationManager;
 
     public AuthenticationResponse register(RegisterRequest request) {
-        var user = User.builder()
+        User user = User.builder()
                 .firstname(request.getFirstname())
                 .lastname(request.getLastname())
                 .email(request.getEmail())
@@ -33,7 +33,7 @@ public class AuthenticationService {
                 .Role(Role.USER)
                 .build();
         userRepository.save(user);
-        var jwtToken = jwtService.generateToken(user);
+        String jwtToken = jwtUtil.generateToken(user);
         return AuthenticationResponse.builder()
                 .token(jwtToken)
                 .build();
@@ -46,7 +46,7 @@ public class AuthenticationService {
         var user = userRepository.findByEmail(request.getEmail())
                 .orElseThrow();
 
-        var jwtToken = jwtService.generateToken(user);
+        var jwtToken = jwtUtil.generateToken(user);
         return AuthenticationResponse.builder()
                 .token(jwtToken)
                 .build();

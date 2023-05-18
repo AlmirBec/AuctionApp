@@ -3,7 +3,7 @@ import React, { useState }from 'react'
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { FormControl, Input, InputLabel, Button, Grid } from '@mui/material';
-
+import API_URL from '../constants/constants';
 
 export default function Registration() {
   let navigate = useNavigate();
@@ -26,9 +26,10 @@ export default function Registration() {
   const onSubmit = async (e) => {
     e.preventDefault();
     console.log(user);
-    await axios.post("http://localhost:8080/auth/register", user);
+    await axios.post(`${API_URL}/auth/register`, user);
     navigate("/login");
   };
+  
   return ( 
     <Grid container justifyContent="center" alignItems="center" sx={{ width: "40%", margin:"50px auto",
      border: "1px solid gray" }}>

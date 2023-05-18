@@ -22,19 +22,19 @@ public class AuctionItem {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column
+    @Column(nullable = false)
     private String name;
 
-    @Column
+    @Column(length = 500)
     private String description;
 
-    @Column
+    @Column(nullable = false)
     private Long price;
 
-    @Column
+    @Column(nullable = false)
     private Date startDate;
 
-    @Column
+    @Column(nullable = false)
     private Date endDate;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "auctionitem", cascade = CascadeType.ALL, orphanRemoval = true)

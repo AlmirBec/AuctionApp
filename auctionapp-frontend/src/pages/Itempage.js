@@ -2,13 +2,14 @@ import React, { useEffect, useState } from 'react'
 import { Grid } from '@mui/material'
 import ItemList from '../components/ItemList'
 import Categories from '../components/Categories'
-import Wrapper from '../components/Wrapper'
 import axios from 'axios';
+import Wrapper from '../components/Wrapper';
+import API_URL from '../constants/constants';
 
-export const Itempage = () => {
+const ItemPage = () => {
   const [items, setItems] = useState([]);
   useEffect(() => {
-    axios.get("http://localhost:8080/items")
+    axios.get(`${API_URL}/items/`)
     .then(response => {
         setItems(response.data);
     })
@@ -21,7 +22,6 @@ const handleItemsChange = (newItems) => {
   setItems(newItems);
 };
   return (
-    <>
     <Wrapper>
       <Grid container mt={5}
           direction="row"
@@ -35,6 +35,7 @@ const handleItemsChange = (newItems) => {
         </Grid>
       </Grid>
     </Wrapper>
-    </>
   )
 }
+
+export default ItemPage

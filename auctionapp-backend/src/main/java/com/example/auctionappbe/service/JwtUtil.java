@@ -21,15 +21,14 @@ import java.util.function.Function;
 
 
 @Service
-public class JwtService {
+public class JwtUtil {
 
     private final UserRepository userRepository;
     private final Environment environment;
-
     private final String SECRET_KEY;
 
     @Autowired
-    public JwtService(UserRepository userRepository, Environment environment) {
+    public JwtUtil(UserRepository userRepository, Environment environment) {
         this.userRepository = userRepository;
         this.environment = environment;
         this.SECRET_KEY = environment.getProperty("secret_key");
@@ -42,14 +41,6 @@ public class JwtService {
         final Claims claims = extractAllClaims(token);
         return claimsResolver.apply(claims);
     }
-    private Claims extractAllClaims(String token){
-        return Jwts.parserBuilder()
-                .setSigningKey(getSignInKey())
-                .build()
-                .parseClaimsJws(token)
-                .getBody();
-    }
-
     //generate token with only user details
     public  String generateToken(UserDetails userDetails){
         return generateToken(new HashMap<>(), userDetails);
@@ -59,7 +50,7 @@ public class JwtService {
     public String generateToken(Map<String, Object> extraClaims,
                                 UserDetails userDetails){
         Optional<User> user = userRepository.findByEmail(userDetails.getUsername());
-        if(user != null){
+        if(user.isPresent()){
             extraClaims.put("id", user.get().getId());
             extraClaims.put("firstname", user.get().getFirstname());
             extraClaims.put("lastname", user.get().getFirstname());
@@ -73,12 +64,18 @@ public class JwtService {
                 .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 3))
                 .signWith(getSignInKey(), SignatureAlgorithm.HS256)
                 .compact();
-
     }
 
     public boolean isTokenValid(String token, UserDetails userDetails){
         final String userEmail = extractUseremail(token);
         return (userEmail.equals(userDetails.getUsername())) && !isTokenExpired(token);
+    }
+    private Claims extractAllClaims(String token){
+        return Jwts.parserBuilder()
+                .setSigningKey(getSignInKey())
+                .build()
+                .parseClaimsJws(token)
+                .getBody();
     }
 
     private boolean isTokenExpired(String token) {

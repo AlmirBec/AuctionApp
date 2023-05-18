@@ -1,6 +1,7 @@
 import { Divider, List, ListItem, ListItemButton, ListItemText, ListSubheader } from '@mui/material'
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
+import API_URL from '../constants/constants';
 
 const Categories = ({onItemsChange}) => {
     const style = {
@@ -14,7 +15,7 @@ const Categories = ({onItemsChange}) => {
       const [categories, setCategories] = useState([]);
 
       useEffect(() => {
-        axios.get("http://localhost:8080/items/categories")
+        axios.get(`${API_URL}/items/categories`)
         .then(response => {
             setCategories(response.data);
         })
@@ -25,7 +26,7 @@ const Categories = ({onItemsChange}) => {
 
     const handleClick = (id) => {
         if(id === 0){
-            axios.get("http://localhost:8080/items")
+            axios.get(`${API_URL}/items`)
             .then(response => {
                 onItemsChange(response.data);
             })
@@ -34,7 +35,7 @@ const Categories = ({onItemsChange}) => {
             });
         }
         else{
-        axios.get(`http://localhost:8080/items/category/${id}`)
+        axios.get(`${API_URL}/items/category/${id}`)
             .then(response => {
                 onItemsChange(response.data);
             })

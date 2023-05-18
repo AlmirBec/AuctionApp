@@ -1,8 +1,9 @@
 import React, { useState }from 'react'
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
-import '../style/registration.css'
 import { FormControl, Input, InputLabel, Button, Grid } from '@mui/material';
+import API_URL from '../constants/constants';
+
 const Login = () => {
 
     let navigate = useNavigate();
@@ -21,7 +22,7 @@ const Login = () => {
       const onSubmit = (e) => {
         e.preventDefault();
         console.log(user);
-        axios.post("http://localhost:8080/auth/login", user).then(response =>{
+        axios.post(`${API_URL}/auth/login`, user).then(response =>{
           localStorage.setItem("token", response.data.token);
         }).catch(error =>{
           console.error(error)

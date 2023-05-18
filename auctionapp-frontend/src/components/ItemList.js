@@ -3,13 +3,15 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { FaList, FaTh } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import API_URL from '../constants/constants';
 
  const ItemList = ({items, setItems, searchValue}) => {
-    console.log(searchValue);
+
     const [visible, setVisible] = useState(9);
     const showMoreItems = () => {
         setVisible((previousValue) => previousValue + 9);
     }
+
     let isSameValue = false;
     if(items.length !== 0){
         const firstItemValue = items[0].category.id;
@@ -20,7 +22,7 @@ import { Link } from 'react-router-dom';
     const handleMenuItemClick = (value) => {
         if(isSameValue){
             if(value === 'option1'){
-                axios.get(`http://localhost:8080/items/category/${items[0].category.id}`)
+                axios.get(`${API_URL}/items/category/${items[0].category.id}`)
                 .then(response => {
                 setItems(response.data);
             })
@@ -29,7 +31,7 @@ import { Link } from 'react-router-dom';
                 });  
             }
             else if(value === 'option2'){
-                axios.get(`http://localhost:8080/items/sortInCategoryByName/${items[0].category.id}`)
+                axios.get(`${API_URL}/items/sortInCategoryByName/${items[0].category.id}`)
                 .then(response => {
                 setItems(response.data);
             })
@@ -38,7 +40,7 @@ import { Link } from 'react-router-dom';
                 });  
             }
             else if(value === 'option3'){
-                axios.get(`http://localhost:8080/items/sortInCategoryByNewness/${items[0].category.id}`)
+                axios.get(`${API_URL}/items/sortInCategoryByNewness/${items[0].category.id}`)
                 .then(response => {
                 setItems(response.data);
             })
@@ -47,7 +49,7 @@ import { Link } from 'react-router-dom';
                 });  
             }
             else if(value === 'option4'){
-                axios.get(`http://localhost:8080/items/sortInCategoryByPrice/${items[0].category.id}`)
+                axios.get(`${API_URL}/items/sortInCategoryByPrice/${items[0].category.id}`)
                 .then(response => {
                 setItems(response.data);
             })
@@ -58,7 +60,7 @@ import { Link } from 'react-router-dom';
         }
         else{
             if(value === 'option1'){
-                axios.get(`http://localhost:8080/items`)
+                axios.get(`${API_URL}/items`)
                 .then(response => {
                 setItems(response.data);
             })
@@ -67,7 +69,7 @@ import { Link } from 'react-router-dom';
                 });  
             }
             else if(value === 'option2'){
-                axios.get(`http://localhost:8080/items/sortByName`)
+                axios.get(`${API_URL}/items/sortByName`)
                 .then(response => {
                 setItems(response.data);
             })
@@ -76,7 +78,7 @@ import { Link } from 'react-router-dom';
                 });  
             }
             else if(value === 'option3'){
-                axios.get(`http://localhost:8080/items/sortByNewness`)
+                axios.get(`${API_URL}/items/sortByNewness`)
                 .then(response => {
                 setItems(response.data);
             })
@@ -85,7 +87,7 @@ import { Link } from 'react-router-dom';
                 });  
             }
             else if(value === 'option4'){
-                axios.get(`http://localhost:8080/items/sortByPrice`)
+                axios.get(`${API_URL}/items/sortByPrice`)
                 .then(response => {
                 setItems(response.data);
             })

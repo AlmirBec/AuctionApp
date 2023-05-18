@@ -1,13 +1,13 @@
 import { Grid, Link, Typography } from '@mui/material';
 import React from 'react'
-
-
 import { FaFacebook, FaInstagram, FaTwitter } from 'react-icons/fa';
 import { decodeToken } from 'react-jwt';
 
 const Topbar = () => {
+
   const token = localStorage.getItem('token');
   const decodedToken = decodeToken(token);
+  
   return (
     <Grid container justifyContent="space-between" alignItems="center" sx ={{backgroundColor: "#252525"}}>
     <Grid item xs={12} sm={6} md={4}>
