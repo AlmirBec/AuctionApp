@@ -20,6 +20,7 @@ const Categories = ({onItemsChange}) => {
             setCategories(response.data);
         })
         .catch(error => {
+            console.log(`${API_URL}/items/categories`)
             console.log(error);
         });
     }, []);

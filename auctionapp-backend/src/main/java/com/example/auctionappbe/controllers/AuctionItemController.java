@@ -8,11 +8,12 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@CrossOrigin("http://localhost:3000")
 @RequestMapping(path = "${application.api.prefix}/items")
+@CrossOrigin("http://localhost:3000")
 public class AuctionItemController {
     @Autowired
     private AuctionItemRepository auctionItemRepository;
+
     @GetMapping("/")
     public List<AuctionItem> getAllItems(){
         return auctionItemRepository.findAll();

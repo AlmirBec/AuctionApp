@@ -22,7 +22,6 @@ public class AuthenticationService {
     private final PasswordEncoder passwordEncoder;
     private final JwtUtil jwtUtil;
     private final AuthenticationManager authenticationManager;
-
     public AuthenticationResponse register(RegisterRequest request) {
         User user = User.builder()
                 .firstname(request.getFirstname())
@@ -38,7 +37,6 @@ public class AuthenticationService {
                 .token(jwtToken)
                 .build();
     }
-
     public AuthenticationResponse login(LoginRequest request) {
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword())
