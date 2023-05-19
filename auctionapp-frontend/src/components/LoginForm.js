@@ -1,34 +1,27 @@
 import React, { useState }from 'react'
-import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { FormControl, Input, InputLabel, Button, Grid } from '@mui/material';
-import API_URL from '../constants/constants';
+import { loginUser } from '../service/loginUser';
 
 const Login = () => {
 
     let navigate = useNavigate();
-
     const [user, setUser] = useState({
         email: "",
         password: "",
-      });
+    });
+    const {email, password} = user;
     
-      const {email, password} = user;
+    const onInputChange = (e) => {
+      setUser({ ...user, [e.target.name]: e.target.value });
+    };
     
-      const onInputChange = (e) => {
-        setUser({ ...user, [e.target.name]: e.target.value });
-      };
-    
-      const onSubmit = (e) => {
-        e.preventDefault();
-        console.log(user);
-        axios.post(`${API_URL}/auth/login`, user).then(response =>{
-          localStorage.setItem("token", response.data.token);
-        }).catch(error =>{
-          console.error(error)
-        });
+    const onSubmit = (e) => {
+      e.preventDefault();
+      loginUser(user);
         navigate("/items");
-      };
+    };
+
   return (
     <Grid container justifyContent="center" alignItems="center" sx={{width: "40%", margin:"50px auto",
      border: "1px solid gray" }}>

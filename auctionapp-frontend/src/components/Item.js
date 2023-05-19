@@ -1,7 +1,7 @@
-import { Box, Button, Divider, Grid, Paper, TextField, Typography } from '@mui/material'
+import { Box, Button, Divider, Grid, TextField, Typography } from '@mui/material'
 import React from 'react'
 import Wrapper from './Wrapper'
-import { Link, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 const Item = () => {
     const {state} = useLocation();
@@ -13,7 +13,7 @@ const Item = () => {
                 <img
                     src={`${state.photo.url}`}
                     srcSet={`${state.photo.url}`}
-                    alt={"Photo of item"}
+                    alt={"Item"}
                     style={{ height: "330px", width: "300px" }}
                     loading="lazy"
                 />
@@ -24,7 +24,7 @@ const Item = () => {
                     <img key={index} 
                     src={`${state.photo.url}`} 
                     srcSet={`${state.photo.url}`}
-                    alt="Photo" 
+                    alt="Item" 
                     style={{ height: "97px" , width:'58px' }}
                     loading="lazy"/>
                 </Grid>

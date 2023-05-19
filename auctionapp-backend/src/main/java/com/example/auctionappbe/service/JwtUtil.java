@@ -19,8 +19,6 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.function.Function;
 
-
-@Service
 public class JwtUtil {
 
     private final UserRepository userRepository;
@@ -37,20 +35,22 @@ public class JwtUtil {
     public String extractUseremail(String token) {
         return extractClaim(token, Claims::getSubject);
     }
-    public <T> T extractClaim(String token, Function<Claims, T> claimsResolver){
+
+    public <T> T extractClaim(String token, Function<Claims, T> claimsResolver) {
         final Claims claims = extractAllClaims(token);
         return claimsResolver.apply(claims);
     }
+
     //generate token with only user details
-    public  String generateToken(UserDetails userDetails){
+    public String generateToken(UserDetails userDetails) {
         return generateToken(new HashMap<>(), userDetails);
     }
 
     //generate token with extra claims
     public String generateToken(Map<String, Object> extraClaims,
-                                UserDetails userDetails){
+                                UserDetails userDetails) {
         Optional<User> user = userRepository.findByEmail(userDetails.getUsername());
-        if(user.isPresent()){
+        if (user.isPresent()) {
             extraClaims.put("id", user.get().getId());
             extraClaims.put("firstname", user.get().getFirstname());
             extraClaims.put("lastname", user.get().getFirstname());
@@ -66,11 +66,12 @@ public class JwtUtil {
                 .compact();
     }
 
-    public boolean isTokenValid(String token, UserDetails userDetails){
+    public boolean isTokenValid(String token, UserDetails userDetails) {
         final String userEmail = extractUseremail(token);
         return (userEmail.equals(userDetails.getUsername())) && !isTokenExpired(token);
     }
-    private Claims extractAllClaims(String token){
+
+    private Claims extractAllClaims(String token) {
         return Jwts.parserBuilder()
                 .setSigningKey(getSignInKey())
                 .build()
@@ -90,6 +91,5 @@ public class JwtUtil {
         byte[] keyBytes = Decoders.BASE64.decode(SECRET_KEY);
         return Keys.hmacShaKeyFor(keyBytes);
     }
-
 
 }

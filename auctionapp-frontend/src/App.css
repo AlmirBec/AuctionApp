@@ -1,0 +1,24 @@
+.categoryList{
+    width: 100%;
+    max-width: 360;
+    background-color: 'background.paper';
+    display: 'flex';
+    flex-direction: 'column', 
+}
+
+.footerText{
+    font-family: 'Lato';
+    color: #D8D8D8;
+}
+
+.topbar{
+    background-color: #252525;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.buttonText{
+    font-family:"Lato";
+    font-size:"14px";
+    color: #252525;
+}

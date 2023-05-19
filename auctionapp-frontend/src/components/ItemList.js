@@ -1,102 +1,21 @@
-import { Box, Button, Grid, ImageList, ImageListItem, ImageListItemBar, MenuItem, Select, TextField, Typography } from '@mui/material';
-import axios from 'axios';
-import React, { useEffect, useState } from 'react'
+import { Box, Button, Grid, ImageListItem, ImageListItemBar, MenuItem, TextField, Typography } from '@mui/material';
+import React, { useState } from 'react'
 import { FaList, FaTh } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
-import API_URL from '../constants/constants';
+import { fetchSortedItems } from '../service/fetchItems';
 
- const ItemList = ({items, setItems, searchValue}) => {
+ const ItemList = ({items, setItems, categoryId}) => {
 
     const [visible, setVisible] = useState(9);
+
     const showMoreItems = () => {
         setVisible((previousValue) => previousValue + 9);
     }
 
-    let isSameValue = false;
-    if(items.length !== 0){
-        const firstItemValue = items[0].category.id;
-        isSameValue = items.every((item) => {
-            return item.category.id === firstItemValue;
-        })
-    }
     const handleMenuItemClick = (value) => {
-        if(isSameValue){
-            if(value === 'option1'){
-                axios.get(`${API_URL}/items/category/${items[0].category.id}`)
-                .then(response => {
-                setItems(response.data);
-            })
-                .catch(error => {
-                    console.log(error);
-                });  
-            }
-            else if(value === 'option2'){
-                axios.get(`${API_URL}/items/sortInCategoryByName/${items[0].category.id}`)
-                .then(response => {
-                setItems(response.data);
-            })
-                .catch(error => {
-                    console.log(error);
-                });  
-            }
-            else if(value === 'option3'){
-                axios.get(`${API_URL}/items/sortInCategoryByNewness/${items[0].category.id}`)
-                .then(response => {
-                setItems(response.data);
-            })
-                .catch(error => {
-                    console.log(error);
-                });  
-            }
-            else if(value === 'option4'){
-                axios.get(`${API_URL}/items/sortInCategoryByPrice/${items[0].category.id}`)
-                .then(response => {
-                setItems(response.data);
-            })
-                .catch(error => {
-                    console.log(error);
-                });  
-            }
-        }
-        else{
-            if(value === 'option1'){
-                axios.get(`${API_URL}/items`)
-                .then(response => {
-                setItems(response.data);
-            })
-                .catch(error => {
-                    console.log(error);
-                });  
-            }
-            else if(value === 'option2'){
-                axios.get(`${API_URL}/items/sortByName`)
-                .then(response => {
-                setItems(response.data);
-            })
-                .catch(error => {
-                    console.log(error);
-                });  
-            }
-            else if(value === 'option3'){
-                axios.get(`${API_URL}/items/sortByNewness`)
-                .then(response => {
-                setItems(response.data);
-            })
-                .catch(error => {
-                    console.log(error);
-                });  
-            }
-            else if(value === 'option4'){
-                axios.get(`${API_URL}/items/sortByPrice`)
-                .then(response => {
-                setItems(response.data);
-            })
-                .catch(error => {
-                    console.log(error);
-                });  
-            }  
-        }
-      };
+        fetchSortedItems(categoryId, value, setItems);
+    };
+
   return (
     <Grid container >
         <Grid item container justifyContent={"space-between"}>
@@ -112,16 +31,16 @@ import API_URL from '../constants/constants';
             select
             defaultValue="option1"
             >
-                <MenuItem key= "option1" value="option1" onClick={() => handleMenuItemClick('option1')}>
+                <MenuItem key= "option1" value="option1" onClick={() => handleMenuItemClick('Id')}>
                     Default sorting
                 </MenuItem>
-                <MenuItem key= "option2" value="option2"onClick={() => handleMenuItemClick('option2')}>
+                <MenuItem key= "option2" value="option2"onClick={() => handleMenuItemClick('Name')}>
                     Sort by Name
                 </MenuItem>
-                <MenuItem key= "option3" value="option3" onClick={() => handleMenuItemClick('option3')}>
+                <MenuItem key= "option3" value="option3" onClick={() => handleMenuItemClick('StartDate')}>
                     Sort by Newness
                 </MenuItem>
-                <MenuItem key= "option4" value="option4" onClick={() => handleMenuItemClick('option4')}>
+                <MenuItem key= "option4" value="option4" onClick={() => handleMenuItemClick('Price')}>
                     Sort by Price
                 </MenuItem>
                     

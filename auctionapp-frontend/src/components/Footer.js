@@ -4,29 +4,29 @@ import { Grid, Link, Typography } from '@mui/material';
 
 const Footer = () => {
   return (
-    <Grid container sx={{ bgcolor: '#252525'}} justifyContent={'space-around'} alignItems={'center'}>
+    <Grid container className='topbar'>
       <Grid item xs={12} sm={6}>
         <Grid container spacing={1} direction="column" marginLeft={10} p={2.5}>
           <Grid item>
-            <Typography variant="h6" sx={{color: "#FFFFFF", fontFamily: 'Lato', fontSize:"16px"}}>AUCTION</Typography>
+            <Typography variant="h6" className='footerText'>AUCTION</Typography>
           </Grid>
           <Grid item>
           <Link href="#" underline="none">
-            <Typography variant="body1" style={{ fontFamily: 'Lato', color: '#D8D8D8' }}>
+            <Typography variant="body1" className='footerText'>
               About us
             </Typography>
           </Link>
           </Grid>
           <Grid item>
           <Link href="#" underline="none">
-            <Typography variant="body1" style={{ fontFamily: 'Lato', color: '#D8D8D8' }}>
+            <Typography variant="body1" className='footerText'>
               Terms and conditions
             </Typography>
           </Link>
           </Grid>
           <Grid item>
           <Link href="#" underline="none">
-            <Typography variant="body1" style={{ fontFamily: 'Lato', color: '#D8D8D8' }}>
+            <Typography variant="body1" className='footerText'>
               Privacy and Policy
             </Typography>
           </Link>
@@ -39,10 +39,10 @@ const Footer = () => {
             <Typography variant="h6" sx={{color: "#FFFFFF", fontFamily: 'Lato', fontSize:"16px"}}>GET IN TOUCH</Typography>
           </Grid>
           <Grid item>
-            <Typography style={{ fontFamily: 'Lato', color: '#D8D8D8' }}>Call us at: +123 797-567-2535</Typography>
+            <Typography className='footerText'>Call us at: +123 797-567-2535</Typography>
           </Grid>
           <Grid item>
-            <Typography style={{ fontFamily: 'Lato', color: '#D8D8D8' }}>support@auction.com</Typography>
+            <Typography className='footerText'>support@auction.com</Typography>
           </Grid>
           <Grid item>
             <Grid container  spacing={2}>

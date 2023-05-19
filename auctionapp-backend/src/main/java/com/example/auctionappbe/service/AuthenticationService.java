@@ -22,31 +22,28 @@ public class AuthenticationService {
     private final PasswordEncoder passwordEncoder;
     private final JwtUtil jwtUtil;
     private final AuthenticationManager authenticationManager;
+
     public AuthenticationResponse register(RegisterRequest request) {
         User user = User.builder()
                 .firstname(request.getFirstname())
                 .lastname(request.getLastname())
                 .email(request.getEmail())
                 .password(passwordEncoder.encode(request.getPassword()))
-                .datejoined(new Date())
+                .date_joined(new Date())
                 .Role(Role.USER)
                 .build();
         userRepository.save(user);
-        String jwtToken = jwtUtil.generateToken(user);
-        return AuthenticationResponse.builder()
-                .token(jwtToken)
-                .build();
-    }
-    public AuthenticationResponse login(LoginRequest request) {
-        authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword())
-        );
-        var user = userRepository.findByEmail(request.getEmail())
-                .orElseThrow();
 
-        var jwtToken = jwtUtil.generateToken(user);
-        return AuthenticationResponse.builder()
-                .token(jwtToken)
-                .build();
+        String jwtToken = jwtUtil.generateToken(user);
+
+        return new AuthenticationResponse(jwtToken);
+    }
+
+    public AuthenticationResponse login(LoginRequest request) {
+        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword()));
+        User user = userRepository.findByEmail(request.getEmail()).orElseThrow();
+
+        String jwtToken = jwtUtil.generateToken(user);
+        return new AuthenticationResponse(jwtToken);
     }
 }

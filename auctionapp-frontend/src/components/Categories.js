@@ -1,52 +1,27 @@
-import { Divider, List, ListItem, ListItemButton, ListItemText, ListSubheader } from '@mui/material'
-import axios from 'axios';
+import { Divider, List, ListItemButton, ListItemText, ListSubheader } from '@mui/material'
 import React, { useEffect, useState } from 'react'
-import API_URL from '../constants/constants';
+import { fetchCategories } from '../service/fetchCategories';
+import { fetchItems, fetchItemsByCategory } from '../service/fetchItems';
 
-const Categories = ({onItemsChange}) => {
-    const style = {
-        width: '100%',
-        maxWidth: 360,
-        bgcolor: 'background.paper',
-        display: 'flex',
-        flexDirection: 'column',
-      };
+const Categories = ({onItemsChange, onCategoryIdChange}) => {
+    
+    const [categories, setCategories] = useState([]);
 
-      const [categories, setCategories] = useState([]);
-
-      useEffect(() => {
-        axios.get(`${API_URL}/items/categories`)
-        .then(response => {
-            setCategories(response.data);
-        })
-        .catch(error => {
-            console.log(`${API_URL}/items/categories`)
-            console.log(error);
-        });
+    useEffect(() => {
+        fetchCategories(setCategories);
     }, []);
 
     const handleClick = (id) => {
-        if(id === 0){
-            axios.get(`${API_URL}/items`)
-            .then(response => {
-                onItemsChange(response.data);
-            })
-            .catch(error => {
-                console.log(error);
-            });
-        }
-        else{
-        axios.get(`${API_URL}/items/category/${id}`)
-            .then(response => {
-                onItemsChange(response.data);
-            })
-            .catch(error => {
-                console.log(error);
-            });
-        }
-      };
+        onCategoryIdChange(id);
+        if (id === 0) {
+            fetchItems(onItemsChange);
+        } else {
+            fetchItemsByCategory(onItemsChange, id);
+          }
+    };
+
   return (
-    <List sx={style} component="nav" aria-label="mailbox folders" 
+    <List className='categoryList' component="nav" aria-label="mailbox folders" 
     subheader={<ListSubheader>Categories</ListSubheader>}>
         {categories.map((data) => (
         <div key={data.id}>

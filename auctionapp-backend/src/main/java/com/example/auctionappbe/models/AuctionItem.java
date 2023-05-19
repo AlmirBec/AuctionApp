@@ -15,7 +15,7 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "auctionitem", schema = "public")
+@Table(name = "auction_item", schema = "public")
 public class AuctionItem {
 
     @Id
@@ -37,7 +37,7 @@ public class AuctionItem {
     @Column(nullable = false)
     private Date endDate;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "auctionitem", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "auction_item", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Bid> bid = new HashSet<>();
 
     @ManyToOne(fetch = FetchType.EAGER)
@@ -47,7 +47,6 @@ public class AuctionItem {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "categoryId")
     private Category category;
-
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "photoId")

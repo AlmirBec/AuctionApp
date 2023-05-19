@@ -15,6 +15,7 @@ import java.util.*;
 @Entity
 @Table(name = "user", schema = "public")
 public class User implements UserDetails {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -34,8 +35,8 @@ public class User implements UserDetails {
     @Column
     private String username;
 
-    @Column(name = "datejoined")
-    private Date datejoined;
+    @Column
+    private Date date_joined;
 
     @Enumerated(EnumType.STRING)
     private Role Role;
@@ -44,7 +45,7 @@ public class User implements UserDetails {
     private Set<Bid> bid = new HashSet<>();
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<AuctionItem> auctionitem = new HashSet<>();
+    private Set<AuctionItem> auction_item = new HashSet<>();
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

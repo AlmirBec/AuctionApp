@@ -3,12 +3,13 @@ import Loginpage from './pages/LoginPage';
 import ItemPage from './pages/ItemPage';
 import Item from './components/Item';
 import Registerpage from './pages/RegisterPage';
-import Wrapper from './components/Wrapper';
+import './App.css'
 
 function App() {
   return (
       <Router>
-        <Routes>      
+        <Routes>
+        <Route path="/" element={<ItemPage />} />      
             <Route path="/item/:itemId" element={<Item />} />
             <Route path="/login" element={<Loginpage />} />
             <Route path="/registration" element={<Registerpage />} />

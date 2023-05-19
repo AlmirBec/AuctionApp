@@ -4,6 +4,7 @@ import { FaSearch } from 'react-icons/fa';
 import { useLocation } from 'react-router-dom';
 
 const Header = () => {
+  
   const location = useLocation();
   const [searchValue, setSearchValue] = useState('');
 
@@ -11,12 +12,13 @@ const Header = () => {
     setSearchValue(event.target.value);
     console.log(event.target.value);
   }
+
   return (
     <Grid container alignItems="center" justifyContent="center" mt={-5}>
       {location.pathname !== "/login" && location.pathname !== "/registration" ? (
         <>
           <Grid item xs={12} md={3} pl={2}>
-            <img src="https://jectossi.sirv.com/auction-app-logo%201.png" alt="Item Photo" />
+            <img src="https://jectossi.sirv.com/auction-app-logo%201.png" alt="Auction logo"/>
           </Grid>
 
           <Grid item xs={12} md={5}>
@@ -35,20 +37,20 @@ const Header = () => {
           <Grid item xs={12}  md={4} container justifyContent="flex-start" spacing={1} pl={8}>
             <Grid item>
               <Link  href="/items">
-              <Button sx={{fontFamily:"Lato", fontSize:"14px", color:"#252525"}}>Home</Button>
+                <Button className='buttonText'>Home</Button>
               </Link>
             </Grid>
             <Grid item>
-              <Button sx={{fontFamily:"Lato", fontSize:"14px", color:"#252525"}}>About</Button>
+              <Button className='buttonText'>About</Button>
             </Grid>
             <Grid item>
-              <Button sx={{fontFamily:"Lato", fontSize:"14px", color:"#252525"}}>My Account</Button>
+              <Button className='buttonText'>My Account</Button>
             </Grid>
           </Grid>
         </>
       ) : (
         <Grid item>
-          <img src="https://jectossi.sirv.com/auction-app-logo%201.png" alt="Your Photo" />
+          <img src="https://jectossi.sirv.com/auction-app-logo%201.png" alt="Auction logo"/>
         </Grid>
       )}
     </Grid>

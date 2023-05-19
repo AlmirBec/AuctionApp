@@ -1,13 +1,12 @@
 
 import React, { useState }from 'react'
-import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { FormControl, Input, InputLabel, Button, Grid } from '@mui/material';
-import API_URL from '../constants/constants';
+import { registerUser } from '../service/registerUser';
 
 export default function Registration() {
+  
   let navigate = useNavigate();
-
   const [user, setUser] = useState({
     firstname: "",
     lastname: "",
@@ -23,10 +22,9 @@ export default function Registration() {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
 
-  const onSubmit = async (e) => {
+  const onSubmit = (e) => {
     e.preventDefault();
-    console.log(user);
-    await axios.post(`${API_URL}/auth/register`, user);
+    registerUser(user);
     navigate("/login");
   };
   
