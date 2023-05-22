@@ -1,8 +1,8 @@
 import axios from "axios";
-import API_URL from "../constants/constants";
+import API_URL from "../../constants/constants";
 
-export const fetchItems = (onItemsChange) =>{
-    axios.get(`${API_URL}/items/`)
+export const fetchItems = (onItemsChange, visible) =>{
+    axios.get(`${API_URL}/items/${visible}`)
             .then(response => {
                 onItemsChange(response.data);
             })

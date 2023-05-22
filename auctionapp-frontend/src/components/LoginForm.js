@@ -1,7 +1,7 @@
 import React, { useState }from 'react'
 import { useNavigate } from "react-router-dom";
 import { FormControl, Input, InputLabel, Button, Grid } from '@mui/material';
-import { loginUser } from '../service/loginUser';
+import { loginUser } from '../service/userService/loginUser';
 
 const Login = () => {
 

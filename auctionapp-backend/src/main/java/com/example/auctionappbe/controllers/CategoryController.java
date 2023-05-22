@@ -3,6 +3,8 @@ package com.example.auctionappbe.controllers;
 import com.example.auctionappbe.models.AuctionItem;
 import com.example.auctionappbe.models.Category;
 import com.example.auctionappbe.repository.CategoryRepository;
+import com.example.auctionappbe.service.CategoryService;
+import com.example.auctionappbe.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,11 +14,13 @@ import java.util.List;
 @RequestMapping(path = "${application.api.prefix}/category")
 @CrossOrigin("http://localhost:3000")
 public class CategoryController {
+
     @Autowired
-    private CategoryRepository categoryRepository;
+    private CategoryService categoryService;
 
     @GetMapping("/")
     public List<Category> getAllCategories() {
-        return categoryRepository.findAll();
+        List<Category> categories = categoryService.getAllCategories();
+        return categories;
     }
 }

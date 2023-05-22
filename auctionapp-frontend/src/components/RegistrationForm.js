@@ -2,7 +2,7 @@
 import React, { useState }from 'react'
 import { useNavigate } from "react-router-dom";
 import { FormControl, Input, InputLabel, Button, Grid } from '@mui/material';
-import { registerUser } from '../service/registerUser';
+import { registerUser } from '../service/userService/registerUser';
 
 export default function Registration() {
   

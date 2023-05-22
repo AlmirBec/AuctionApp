@@ -52,7 +52,7 @@ public class ApplicationConfiguration {
     }
 
     @Bean
-    public JwtUtil jwtUtil(UserRepository userRepository, Environment environment) {
-        return new JwtUtil(userRepository, environment);
+    public JwtUtil jwtUtil(Environment environment) {
+        return new JwtUtil(environment);
     }
 }

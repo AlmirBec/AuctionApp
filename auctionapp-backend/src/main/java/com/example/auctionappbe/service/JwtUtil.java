@@ -1,7 +1,6 @@
 package com.example.auctionappbe.service;
 
 import com.example.auctionappbe.models.User;
-import com.example.auctionappbe.repository.UserRepository;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -10,24 +9,19 @@ import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.stereotype.Service;
-
 import java.security.Key;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Optional;
 import java.util.function.Function;
 
 public class JwtUtil {
 
-    private final UserRepository userRepository;
     private final Environment environment;
     private final String SECRET_KEY;
 
     @Autowired
-    public JwtUtil(UserRepository userRepository, Environment environment) {
-        this.userRepository = userRepository;
+    public JwtUtil(Environment environment) {
         this.environment = environment;
         this.SECRET_KEY = environment.getProperty("secret_key");
     }
@@ -42,24 +36,22 @@ public class JwtUtil {
     }
 
     //generate token with only user details
-    public String generateToken(UserDetails userDetails) {
-        return generateToken(new HashMap<>(), userDetails);
+    public String generateToken(User user) {
+        return generateToken(new HashMap<>(), user);
     }
 
     //generate token with extra claims
     public String generateToken(Map<String, Object> extraClaims,
-                                UserDetails userDetails) {
-        Optional<User> user = userRepository.findByEmail(userDetails.getUsername());
-        if (user.isPresent()) {
-            extraClaims.put("id", user.get().getId());
-            extraClaims.put("firstname", user.get().getFirstname());
-            extraClaims.put("lastname", user.get().getFirstname());
-        }
+                                User user) {
+            extraClaims.put("id", user.getId());
+            extraClaims.put("firstname", user.getFirstname());
+            extraClaims.put("lastname", user.getFirstname());
+
 
         return Jwts
                 .builder()
                 .setClaims(extraClaims)
-                .setSubject(userDetails.getUsername())
+                .setSubject(user.getEmail())
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 3))
                 .signWith(getSignInKey(), SignatureAlgorithm.HS256)

@@ -1,9 +1,9 @@
 import { Divider, List, ListItemButton, ListItemText, ListSubheader } from '@mui/material'
 import React, { useEffect, useState } from 'react'
-import { fetchCategories } from '../service/fetchCategories';
-import { fetchItems, fetchItemsByCategory } from '../service/fetchItems';
+import { fetchCategories } from '../service/categoriesService/fetchCategories';
+import { changeItems } from '../service/categoriesService/changeItems';
 
-const Categories = ({onItemsChange, onCategoryIdChange}) => {
+const Categories = ({onItemsChange, onCategoryIdChange, visible}) => {
     
     const [categories, setCategories] = useState([]);
 
@@ -13,11 +13,7 @@ const Categories = ({onItemsChange, onCategoryIdChange}) => {
 
     const handleClick = (id) => {
         onCategoryIdChange(id);
-        if (id === 0) {
-            fetchItems(onItemsChange);
-        } else {
-            fetchItemsByCategory(onItemsChange, id);
-          }
+        changeItems(id, onItemsChange, visible);
     };
 
   return (

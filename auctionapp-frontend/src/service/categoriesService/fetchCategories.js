@@ -1,5 +1,5 @@
 import axios from "axios";
-import API_URL from "../constants/constants";
+import API_URL from "../../constants/constants";
 
 export const fetchCategories = (setCategories) =>{
     axios.get(`${API_URL}/category/`)

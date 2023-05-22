@@ -2,11 +2,9 @@ import { Box, Button, Grid, ImageListItem, ImageListItemBar, MenuItem, TextField
 import React, { useState } from 'react'
 import { FaList, FaTh } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
-import { fetchSortedItems } from '../service/fetchItems';
+import { fetchSortedItems } from '../service/itemsService/fetchItems';
 
- const ItemList = ({items, setItems, categoryId}) => {
-
-    const [visible, setVisible] = useState(9);
+ const ItemList = ({items, setItems, categoryId, setVisible}) => {
 
     const showMoreItems = () => {
         setVisible((previousValue) => previousValue + 9);
@@ -68,7 +66,26 @@ import { fetchSortedItems } from '../service/fetchItems';
         </Grid>
     <Grid container item spacing={3} justifyContent="space-between">
         
-  {items.slice(0, visible).map((item) => (
+  {items && items.content && items.content.map(item => (
+    <Grid item xs={12} md={4} key={item.id}>
+        <Link to={`/item/${item.id}`} state={item} >
+      <ImageListItem sx={{ width: "100%"}}>
+        <img
+          src={`${item.photo.url}`}
+          srcSet={`${item.photo.url}`}
+          alt={item.name}
+          loading="lazy"
+        />
+        <ImageListItemBar
+          title={item.name}
+          subtitle={<span>Start from: ${item.price}.00</span>}
+          position="below"
+        />
+      </ImageListItem>
+      </Link>
+    </Grid>
+  ))}
+  {items && !(items.content) && items.map(item => (
     <Grid item xs={12} md={4} key={item.id}>
         <Link to={`/item/${item.id}`} state={item} >
       <ImageListItem sx={{ width: "100%"}}>
