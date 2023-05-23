@@ -1,5 +1,6 @@
 package com.example.auctionappbe.service;
 
+import com.example.auctionappbe.config.JWTConfig;
 import com.example.auctionappbe.models.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -19,11 +20,13 @@ public class JwtUtil {
 
     private final Environment environment;
     private final String SECRET_KEY;
+    private final JWTConfig jwtConfig;
 
     @Autowired
-    public JwtUtil(Environment environment) {
+    public JwtUtil(Environment environment, JWTConfig jwtConfig) {
         this.environment = environment;
         this.SECRET_KEY = environment.getProperty("secret_key");
+        this.jwtConfig = jwtConfig;
     }
 
     public String extractUseremail(String token) {
@@ -53,7 +56,7 @@ public class JwtUtil {
                 .setClaims(extraClaims)
                 .setSubject(user.getEmail())
                 .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 3))
+                .setExpiration(new Date(System.currentTimeMillis() + jwtConfig.getTokenExpirationMillis()))
                 .signWith(getSignInKey(), SignatureAlgorithm.HS256)
                 .compact();
     }

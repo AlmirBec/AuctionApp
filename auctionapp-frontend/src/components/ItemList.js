@@ -68,7 +68,7 @@ import { fetchSortedItems } from '../service/itemsService/fetchItems';
         
   {items && items.content && items.content.map(item => (
     <Grid item xs={12} md={4} key={item.id}>
-        <Link to={`/item/${item.id}`} state={item} >
+        <Link to={`/item/${item.id}`} state={item}>
       <ImageListItem sx={{ width: "100%"}}>
         <img
           src={`${item.photo.url}`}
@@ -87,13 +87,14 @@ import { fetchSortedItems } from '../service/itemsService/fetchItems';
   ))}
   {items && !(items.content) && items.map(item => (
     <Grid item xs={12} md={4} key={item.id}>
-        <Link to={`/item/${item.id}`} state={item} >
+        <Link to={`/item/${item.id}`} state={item}>
       <ImageListItem sx={{ width: "100%"}}>
         <img
           src={`${item.photo.url}`}
           srcSet={`${item.photo.url}`}
           alt={item.name}
           loading="lazy"
+          sx={{textDecoration: "none"}}
         />
         <ImageListItemBar
           title={item.name}
