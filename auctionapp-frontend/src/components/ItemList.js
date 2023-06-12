@@ -45,7 +45,7 @@ import { fetchSortedItems } from '../service/itemsService/fetchItems';
                 </TextField>
                 </Box>
             </Grid>
-            <Grid item container xs={6} md={6} spacing={2} justifyContent={"flex-end"} alignItems={"center"}>
+            <Grid item container xs={6} md={6} spacing={2} justifyContent={"flex-end"} alignItems={"center"} paddingRight={"40px"}>
                 <Grid item>                
                     <FaTh size={24}/> 
                 </Grid>
@@ -68,8 +68,8 @@ import { fetchSortedItems } from '../service/itemsService/fetchItems';
         
   {items && items.content && items.content.map(item => (
     <Grid item xs={12} md={4} key={item.id}>
-        <Link to={`/item/${item.id}`} state={item}>
-      <ImageListItem sx={{ width: "100%"}}>
+        <Link to={`/item/${item.id}`} state={item} style={{ textDecoration: 'none' }}>
+      <ImageListItem sx={{ width: "262px", height:"350px"}}>
         <img
           src={`${item.photo.url}`}
           srcSet={`${item.photo.url}`}
@@ -80,6 +80,7 @@ import { fetchSortedItems } from '../service/itemsService/fetchItems';
           title={item.name}
           subtitle={<span>Start from: ${item.price}.00</span>}
           position="below"
+          sx={{color:'#252525'}}
         />
       </ImageListItem>
       </Link>
@@ -87,19 +88,19 @@ import { fetchSortedItems } from '../service/itemsService/fetchItems';
   ))}
   {items && !(items.content) && items.map(item => (
     <Grid item xs={12} md={4} key={item.id}>
-        <Link to={`/item/${item.id}`} state={item}>
-      <ImageListItem sx={{ width: "100%"}}>
+        <Link to={`/item/${item.id}`} state={item} style={{ textDecoration: 'none' }}>
+      <ImageListItem sx={{ width: "262px", height:"350px"}}>
         <img
           src={`${item.photo.url}`}
           srcSet={`${item.photo.url}`}
           alt={item.name}
           loading="lazy"
-          sx={{textDecoration: "none"}}
         />
         <ImageListItemBar
           title={item.name}
           subtitle={<span>Start from: ${item.price}.00</span>}
           position="below"
+          sx={{color:'#252525'}}
         />
       </ImageListItem>
       </Link>

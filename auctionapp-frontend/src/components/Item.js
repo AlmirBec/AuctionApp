@@ -7,7 +7,7 @@ const Item = () => {
     const {state} = useLocation();
   return (
     <Wrapper>
-    <Grid container p={3} justifyContent={'space-between'}>
+    <Grid container p={3} justifyContent={'space-between'} sx={{paddingLeft:"60px"}}>
         <Grid item container direction={"column"} xs={12} sm={6} md={5}>
             <Grid item xs={12} sm={6} md={6}>
                 <img

@@ -33,7 +33,7 @@ const Footer = () => {
           </Grid>
         </Grid>
       </Grid>
-      <Grid item xs={12} sm={6}>
+      <Grid item xs={12} sm={6}  sx={{paddingLeft:"200px"}}>
         <Grid container spacing={1} direction="column" p={2.5}>
           <Grid item>
             <Typography variant="h6" sx={{color: "#FFFFFF", fontFamily: 'Lato', fontSize:"16px"}}>GET IN TOUCH</Typography>

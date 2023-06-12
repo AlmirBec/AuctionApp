@@ -17,7 +17,7 @@ const Header = () => {
     <Grid container alignItems="center" justifyContent="center" mt={-5}>
       {location.pathname !== "/login" && location.pathname !== "/registration" ? (
         <>
-          <Grid item xs={12} md={3} pl={2}>
+          <Grid item xs={12} md={3} sx={{paddingLeft:"60px" }}>
             <img src="https://jectossi.sirv.com/auction-app-logo%201.png" alt="Auction logo"/>
           </Grid>
 
@@ -34,7 +34,7 @@ const Header = () => {
             }}/>
           </Grid>
 
-          <Grid item xs={12}  md={4} container justifyContent="flex-start" spacing={1} pl={8}>
+          <Grid item xs={12}  md={4} container justifyContent="flex-start" spacing={1} pl={10}>
             <Grid item>
               <Link  href="/items">
                 <Button className='buttonText'>Home</Button>

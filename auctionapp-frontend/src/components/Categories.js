@@ -17,7 +17,7 @@ const Categories = ({onItemsChange, onCategoryIdChange, visible}) => {
     };
 
   return (
-    <List className='categoryList' component="nav" aria-label="mailbox folders" 
+    <List className='categoryList' sx={{paddingLeft:"40px" }} component="nav" aria-label="mailbox folders" 
     subheader={<ListSubheader>Categories</ListSubheader>}>
         {categories.map((data) => (
         <div key={data.id}>

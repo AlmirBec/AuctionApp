@@ -23,7 +23,7 @@ const Topbar = () => {
         </Grid>
       </Grid>
     </Grid>
-    <Grid item xs={12} sm={6} md={4}>
+    <Grid item xs={12} sm={6} md={4} sx={{paddingRight: "40px"}}>
       <Grid container justifyContent="flex-end" spacing={2} sx={{ paddingRight: '60px' }}>
         {token ? (
           <>
